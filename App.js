@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './src/store/store';
+import { createTables } from './src/services/database';
+import { PaperProv } from './src/context/ThemeContext';
+import StackApp from './StackApp';
 
 export default function App() {
+  useEffect(() => {
+    createTables();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ReduxProvider store={store}>
+      <PaperProv>
+        <StackApp />
+      </PaperProv>
+    </ReduxProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
