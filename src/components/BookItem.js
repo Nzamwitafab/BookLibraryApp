@@ -8,11 +8,14 @@ const BookItem = ({ book, onPress }) => {
   const isDarkMode = theme === DarkTheme;
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.itemContainer, { backgroundColor: isDarkMode ? '#1c1c1c' : '#ffffff', shadowColor: isDarkMode ? '#000' : '#ccc' }]}>
+    <TouchableOpacity onPress={onPress} style={[styles.itemContainer, { backgroundColor: isDarkMode ? 'transparent' : 'transparent', shadowColor: isDarkMode ? '#888' : '#333' }]}>
       <Image source={{ uri: book.image }} style={styles.image} />
       <View style={styles.details}>
         <Text style={[styles.title, { color: isDarkMode ? 'white' : '#121212' }]}>{book.title}</Text>
-        <Text style={[styles.author, { color: isDarkMode ? 'white' : '#121212' }]}>{book.author}</Text>
+        <View style={styles.row}>
+          <Text style={[styles.label, { color: isDarkMode ? 'white' : '#121212' }]}>By  </Text>
+          <Text style={[styles.author, { color: isDarkMode ? 'white' : '#121212' }]}>{book.author}</Text>
+        </View>
         <View style={styles.row}>
           <Text style={[styles.label, { color: isDarkMode ? 'white' : '#121212' }]}>Date:</Text>
           <Text style={[styles.value, { color: isDarkMode ? 'white' : '#121212' }]}>{book.date}</Text>
